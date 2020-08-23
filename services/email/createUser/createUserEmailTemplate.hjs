@@ -60,6 +60,12 @@
         @media (max-width: 525px) {
             .title {
                 font-size: 18px;
+                height: 60px;
+                line-height: 60px;
+            }
+
+            #confirm-email {
+                padding: 20px;
             }
         }
     </style>
@@ -70,7 +76,7 @@
         <div class="container">
             <div class="title">Welcome to Letamin Movies!</div>
             <p class="text-hello">Hey {{name}},</p>
-            <p>Wowweeee! Thanks for registering an account with Letamin-movies! You are the coolest person in all the
+            <p>Wowweeee! Thanks for registering an account with Letamin Movies! You are the coolest person in all the
                 land (and I've met a lot of cool people).</p>
             <hr>
             <p>Before we get started, here is your account information: </p>
