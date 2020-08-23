@@ -1,0 +1,86 @@
+<html nighteye="disabled">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
+    <!------ Include the above in your HEAD tag ---------->
+    <style>
+        #confirm-email {
+            padding: 30px;
+            font-family: 'Inconsolata', monospace;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #5b89d9;
+            border-radius: 4px;
+            background: #a8dadc;
+        }
+
+        .title {
+            font-weight: bolder;
+            font-size: 30px;
+            text-align: center;
+            background: #457B9D;
+            color: white;
+            height: 100px;
+            line-height: 100px;
+        }
+
+        .text-hello,
+        .text-info {
+            font-weight: bold;
+        }
+
+        .btn-go {
+            display: block;
+            padding: 10px;
+            outline: none;
+            border: none;
+            background: #f1faee;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100px;
+            text-align: center;
+            margin: 0 auto;
+
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .btn-go:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body data-gr-c-s-loaded="true">
+    <div id="confirm-email">
+        <div class="container">
+            <div class="title">Welcome to Letamin Movies!</div>
+            <p class="text-hello">Hey {{name}},</p>
+            <p>Wowweeee! Thanks for registering an account with Letamin-movies! You are the coolest person in all the
+                land (and I've met a lot of cool people).</p>
+            <hr>
+            <p>Before we get started, here is your account information: </p>
+            <p><span class="text-info">Email:</span> {{email}}</p>
+            <p><span class="text-info">Password:</span> {{password}}</p>
+            <hr>
+            <p>If your information is correct, let's begin our adventure! But if it's not, do not hesitate to contact us
+                by replying this email.</p>
+            <button class="btn-go"><a href="#">Let's go</a></button>
+        </div>
+    </div>
+
+    </div><iframe id="nr-ext-rsicon"
+        style="position: absolute; display: none; width: 50px; height: 50px; z-index: 2147483647; border-style: none; background: transparent;"
+        src="./bookingTicketEmailTemplate/saved_resource.html"></iframe>
+    <div id="eJOY__extension_root" class="eJOY__extension_root_class" style="all: unset;"></div>
+</body>
+
+</html>
