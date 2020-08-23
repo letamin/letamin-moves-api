@@ -56,6 +56,12 @@
         .btn-go:hover {
             opacity: 0.8;
         }
+
+        @media (max-width: 525px) {
+            .title {
+                font-size: 18px;
+            }
+        }
     </style>
 </head>
 
