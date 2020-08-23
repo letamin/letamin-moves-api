@@ -15,6 +15,8 @@ app.listen(port, () => {
     console.log(`Running on port ${port}`)
 })
 
+console.log(config)
+
 app.use(express.json());
 app.use("/api/users", require("./routes/api/controllers/users"));
 app.use("/api/movies", require("./routes/api/controllers/movies"));
