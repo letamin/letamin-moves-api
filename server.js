@@ -24,3 +24,4 @@ app.use("/api/tickets", require("./routes/api/controllers/tickets"));
 app.use("/api/movies", require("./routes/api/controllers/dates"));
 app.use("/api/cinemas", require("./routes/api/controllers/cinemas"));
 app.use("/api/promotions", require('./routes/api/controllers/promotions'));
+app.use("/api/posters", require('./routes/api/controllers/posters'));
