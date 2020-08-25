@@ -81,7 +81,7 @@ const getMoviesByStatus = (req, res, next) => {
 }
 
 const postMovie = (req, res, next) => {
-    const { name, description, price, trailer, poster, dates } = req.body;
+    const { name, description, price, trailer, poster, dates, time, status, rated } = req.body;
 
     const movieDate = dates.map(date => {
         return new MovieDate({ date })
@@ -91,7 +91,7 @@ const postMovie = (req, res, next) => {
         return new Seat({ code });
     })
 
-    const newMovie = new Movie({ name, description, price, trailer, poster, seats, dates: movieDate });
+    const newMovie = new Movie({ name, description, price, trailer, poster, seats, dates: movieDate, time, status, rated });
 
     newMovie.save()
         .then(movie => {
