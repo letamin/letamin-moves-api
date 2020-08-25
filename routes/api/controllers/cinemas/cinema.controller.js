@@ -31,7 +31,7 @@ const getCinemaById = (req, res, next) => {
 const getCinemaByProvince = (req, res, next) => {
     const { province } = req.params;
 
-    var query = { province: `${province}` };
+    var query = { searchTerm: `${province}` };
 
     Cinema.find(query)
         .then(cinema => {
@@ -41,9 +41,9 @@ const getCinemaByProvince = (req, res, next) => {
 }
 
 const postCinema = (req, res, next) => {
-    const { name, address, movieId, province } = req.body;
+    const { name, address, movieId, province, searchTerm } = req.body;
 
-    const newCinema = new Cinema({ name, address, movieId, province });
+    const newCinema = new Cinema({ name, address, movieId, province, searchTerm });
     newCinema.save()
         .then(cinema => {
             res.status(200).json(cinema)
