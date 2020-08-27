@@ -33,7 +33,7 @@ const validatePostUser = async (req, res, next) => {
         errors.push("Name is required");
     }
 
-    if (Object.keys(errors).length === 0 && errors.constructor === Object) return next();
+    if (errors.length != 0) return next();
     return res.status(400).json(errors);
 }
 
