@@ -11,26 +11,26 @@ const validatePostUser = async (req, res, next) => {
 
     //Validate email
     if (validator.isEmpty(email)) {
-        errors.push = "Email is required";
+        errors.push("Email is required");
     } else if (!validator.isEmail(email)) {
-        errors.push = "Email is invalid.";
+        errors.push("Email is invalid.");
     } else {
         const user = await User.findOne({ email });
         if (user) {
-            errors.push = "Email is already existed."
+            errors.push("Email is already existed.");
         }
     }
 
     //Validate password
     if (validator.isEmpty(password)) {
-        errors.push = "Password is required";
+        errors.push("Password is required");
     } else if (!validator.isLength(password, { min: 6 })) {
-        errors.push = "Password must be at least 6 characters.";
+        errors.push("Password must be at least 6 characters.");
     }
 
     //validate full name
     if (validator.isEmpty(fullName)) {
-        errors.push = "Name is required";
+        errors.push("Name is required");
     }
 
     if (Object.keys(errors).length === 0 && errors.constructor === Object) return next();
