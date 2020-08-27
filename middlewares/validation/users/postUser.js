@@ -34,7 +34,7 @@ const validatePostUser = async (req, res, next) => {
     }
 
     if (Object.keys(errors).length === 0 && errors.constructor === Object) return next();
-    return res.status(400).json(errors);
+    return res.status(400).json({ message: errors });
 }
 
 module.exports = {
