@@ -30,7 +30,7 @@ const validatePostUser = async (req, res, next) => {
 
     //validate full name
     if (validator.isEmpty(fullName)) {
-        errors.fullName = "Fullname is required";
+        errors.fullName = "Name is required";
     }
 
     if (Object.keys(errors).length === 0 && errors.constructor === Object) return next();
