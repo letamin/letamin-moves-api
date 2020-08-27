@@ -73,7 +73,7 @@
 <body data-gr-c-s-loaded="true">
     <div id="confirm-email">
         <div class="container">
-            <div class="title">Welcome to Letamin Movies!</div>
+            <div class="title">Welcome!</div>
             <p class="text-hello">Hey {{name}},</p>
             <p>Wowweeee! Thanks for registering an account with Letamin Movies! You are the coolest person in all the
                 land (and I've met a lot of cool people).</p>
