@@ -5,7 +5,7 @@ const { authenticate, authorize } = require('../../../../middlewares/auth/index'
 
 router.get('/', cinemaController.getCinemas);
 router.get('/:id', cinemaController.getCinemaById);
-router.get('/cinema/movie/:id', cinemaController.getCinemaByMovie);
+router.get('/movie/:id', cinemaController.getCinemaByMovie);
 router.get('/location/:province', cinemaController.getCinemaByProvince);
 router.post('/', authenticate, authorize(["admin"]), cinemaController.postCinema);
 router.patch('/:id', authenticate, authorize(["admin"]), cinemaController.patchCinema);
