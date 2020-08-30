@@ -43,9 +43,9 @@ const getCinemaByProvince = (req, res, next) => {
 const getCinemaByMovie = (req, res, next) => {
     const { id } = req.params;
 
-    // var query = { movieId: `${id}` };
+    var query = { movieId: `${id}` };
 
-    Cinema.find({ movieId: { $in: `${id}` } })
+    Cinema.find(query)
         .then(cinema => {
             res.status(200).json(cinema);
         })
