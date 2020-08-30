@@ -45,7 +45,7 @@ const getCinemaByMovie = (req, res, next) => {
 
     // var query = { movieId: `${movieId}` };
 
-    Cinema.find({ movieId: `${movie}` })
+    Cinema.find({ movieId: { $elemMatch: `${movie}` } })
         .then(cinema => {
             res.status(200).json(cinema);
         })
