@@ -41,6 +41,7 @@ const postTicket = (req, res, next) => {
             }
 
             const availableSeatCodes = movie.seats
+                .filter(seat => seat.date == date)
                 .filter(seat => !seat.isBooked)
                 .map(seat => seat.code);
 
@@ -62,7 +63,7 @@ const postTicket = (req, res, next) => {
             })
 
             seatCodes.forEach(code => {
-                const seatIndex = movie.seats.findIndex(seat => seat.code === code)
+                const seatIndex = movie.seats.filter(seat => seat.date == date).findIndex(seat => seat.code === code)
                 movie.seats[seatIndex].isBooked = true
             })
 
