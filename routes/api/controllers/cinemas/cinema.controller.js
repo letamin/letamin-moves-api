@@ -40,6 +40,18 @@ const getCinemaByProvince = (req, res, next) => {
         .catch(err => res.status(404).json(err))
 }
 
+const getCinemaByMovie = (req, res, next) => {
+    const { movieId } = req.params;
+
+    var query = { movieId: `${movieId}` };
+
+    Cinema.find(query)
+        .then(cinema => {
+            res.status(200).json(cinema);
+        })
+        .catch(err => res.status(404).json(err))
+}
+
 const postCinema = (req, res, next) => {
     const { name, address, movieId, province, searchTerm } = req.body;
 
@@ -94,7 +106,8 @@ module.exports = {
     getCinemas,
     getCinemaById,
     getCinemaByProvince,
+    getCinemaByMovie,
     postCinema,
     patchCinema,
-    deleteCinemaById
+    deleteCinemaById,
 }
