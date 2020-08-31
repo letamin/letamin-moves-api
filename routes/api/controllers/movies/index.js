@@ -6,6 +6,7 @@ const { authenticate, authorize } = require('../../../../middlewares/auth/index'
 router.get('/', movieController.getMovies);
 router.get('/:id', movieController.getMovieById);
 router.get('/status/:status', movieController.getMoviesByStatus);
+router.get('/movie/:date', movieController.getMovieByDate);
 router.post('/', authenticate, authorize(["admin"]), movieController.postMovie);
 router.patch('/:id', authenticate, authorize(["admin"]), movieController.patchMovieById);
 router.delete('/:id', authenticate, authorize(["admin"]), movieController.deleteMovieById);

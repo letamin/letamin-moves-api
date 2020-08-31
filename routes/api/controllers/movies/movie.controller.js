@@ -59,6 +59,16 @@ const getMovieById = (req, res, next) => {
         })
 }
 
+const getMovieByDate = (req, res, next) => {
+    const { date } = req.params;
+
+    Movie.find({ "dates.date": `${date}` })
+        .then(movie => {
+            res.status(200).json(movie)
+        })
+        .catch(err => res.json(err))
+}
+
 const getMoviesByStatus = (req, res, next) => {
     const { status } = req.params;
     var query = { status: `${status}` };
@@ -144,6 +154,7 @@ module.exports = {
     getMovies,
     getMovieById,
     getMoviesByStatus,
+    getMovieByDate,
     postMovie,
     patchMovieById,
     deleteMovieById
