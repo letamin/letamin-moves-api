@@ -40,10 +40,10 @@ const postTicket = (req, res, next) => {
                 })
             }
 
-            const availableSeatCodes = movie.seats
-                .filter(seat => seat.date == date)
-                .filter(seat => !seat.isBooked)
-                .map(seat => seat.code);
+            const seatCodesFromMovie = movie.dates
+                .filter(_date => _date.date.toString() == date)
+
+            const availableSeatCodes = seatCodesFromMovie[0].seats.filter(seat => !seat.isBooked).map(seat => seat.code)
 
             seatCodes.forEach(code => {
                 if (availableSeatCodes.indexOf(code) === -1) errSeatCodes.push(code);
@@ -63,8 +63,8 @@ const postTicket = (req, res, next) => {
             })
 
             seatCodes.forEach(code => {
-                const seatIndex = movie.seats.filter(seat => seat.date == date).findIndex(seat => seat.code === code)
-                movie.seats[seatIndex].isBooked = true
+                const seatIndex = seatCodesFromMovie[0].seats.findIndex(seat => seat.code === code);
+                seatCodesFromMovie[0].seats[seatIndex].isBooked = true;
             })
 
             return Promise.all([

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { SeatSchema } = require('./Seat');
 const { MovieDateSchema } = require('./MovieDate');
 
 const MovieSchema = new mongoose.Schema({
@@ -8,7 +7,6 @@ const MovieSchema = new mongoose.Schema({
     trailer: { type: String, required: true },
     poster: { type: String, required: true },
     dates: [MovieDateSchema],
-    seats: [SeatSchema],
     price: { type: Number, default: 0 },
     promotion: { type: String, default: 'no-promotion' },
     status: { type: String, default: 'coming-soon' },

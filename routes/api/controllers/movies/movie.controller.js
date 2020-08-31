@@ -20,12 +20,19 @@ const getMovies = (req, res, next) => {
     Movie.find()
         .then(movies => {
             const _movies = movies.map(movie => {
-                const modifiedMovies = {
+                const modifiedMovie = {
                     ...movie._doc,
-                    availableSeatNumber: movie.seats.filter(seat => !seat.isBooked).length
+                    availableSeatNumber: movie.dates.map(date => {
+                        const modifiedDate = {
+                            ...date._doc,
+                            seatsNumber: date.seats.filter(seat => !seat.isBooked).length
+                        }
+                        delete modifiedDate.seats
+                        return modifiedDate
+                    })
                 }
-                delete modifiedMovies.seats;
-                return modifiedMovies;
+                delete modifiedMovie.dates
+                return modifiedMovie;
             })
 
             res.status(200).json(_movies)
@@ -44,12 +51,7 @@ const getMovieById = (req, res, next) => {
                 })
             }
 
-            const modifiedMovies = {
-                availableSeatNumber: movie.seats.filter(seat => !seat.isBooked).length,
-                ...movie._doc
-            }
-
-            res.status(200).json(modifiedMovies)
+            res.status(200).json(movie)
         })
         .catch(err => {
             if (err.status) return res.status(err.status).json({ message: err.message });
@@ -63,18 +65,7 @@ const getMoviesByStatus = (req, res, next) => {
 
     Movie.find(query)
         .then(movies => {
-            const _movies = movies.map(movie => {
-                const modifiedMovies = {
-                    ...movie._doc,
-                    availableSeatNumber: movie.seats.filter(seat => !seat.isBooked).length,
-                    movieDate: movie.dates.map(d => d.date)
-                }
-                delete modifiedMovies.seats;
-                delete modifiedMovies.dates;
-                return modifiedMovies;
-            })
-
-            res.status(200).json(_movies)
+            res.status(200).json(movies)
         })
         .catch(err => res.json(err))
 
@@ -83,15 +74,15 @@ const getMoviesByStatus = (req, res, next) => {
 const postMovie = (req, res, next) => {
     const { name, description, price, trailer, poster, dates, time, status, rated } = req.body;
 
-    const movieDate = dates.map(date => {
-        return new MovieDate({ date })
-    })
-
     const seats = seatCodeArray.map(code => {
         return new Seat({ code });
     })
 
-    const newMovie = new Movie({ name, description, price, trailer, poster, seats, dates: movieDate, time, status, rated });
+    const movieDate = dates.map(date => {
+        return new MovieDate({ date, seats })
+    })
+
+    const newMovie = new Movie({ name, description, price, trailer, poster, dates: movieDate, time, status, rated });
 
     newMovie.save()
         .then(movie => {
@@ -100,7 +91,7 @@ const postMovie = (req, res, next) => {
                 const newDate = new MovieDate({
                     movieId: movie._id,
                     date: Date.parse(date.slice(0, 15)).toString(),
-                    time: date
+                    time: date,
                 });
                 newDate.save()
             })

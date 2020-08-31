@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { SeatSchema } = require('./Seat');
 
 const MovieDateSchema = new mongoose.Schema({
     movieId: {
@@ -11,7 +12,8 @@ const MovieDateSchema = new mongoose.Schema({
     },
     time: {
         type: Date
-    }
+    },
+    seats: [SeatSchema],
 })
 
 const MovieDate = mongoose.model('MovieDate', MovieDateSchema, 'MovieDate');
