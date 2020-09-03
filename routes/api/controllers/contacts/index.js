@@ -3,7 +3,6 @@ const contactController = require('./contact.controller');
 const router = express.Router();
 const { validateContact } = require('../../../../middlewares/validation/contacts/postContact');
 const { authenticate, authorize } = require('../../../../middlewares/auth/index');
-const { model } = require('mongoose');
 
 router.get('/', authenticate, authorize(['admin']), contactController.getContacts);
 router.get('/:id', authenticate, authorize(['admin']), contactController.getContactById);

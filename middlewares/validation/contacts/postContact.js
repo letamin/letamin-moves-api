@@ -1,7 +1,7 @@
 const validator = require('validator');
 const { Contact } = require('../../../models/Contact');
 
-const validateContact = async (req, res, status) => {
+const validateContact = (req, res, next) => {
     let errors = [];
 
     const email = req.body.email || '';
