@@ -43,7 +43,7 @@ const deleteContactById = (req, res, next) => {
 
             return Contact.deleteOne({ _id: id })
         })
-        .then(() => res.status(204))
+        .then(() => res.status(204).json())
         .catch(err => res.json(err))
 }
 
