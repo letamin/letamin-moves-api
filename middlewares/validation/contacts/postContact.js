@@ -28,7 +28,7 @@ const validateContact = (req, res, next) => {
 
     //validate message
     if (validator.isEmpty(message)) {
-        errors.push("Subject is required");
+        errors.push("Message is required");
     }
 
     if (errors.length === 0) return next();
