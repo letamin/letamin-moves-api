@@ -5,7 +5,7 @@ const PromotionSchema = new mongoose.Schema({
     description: { type: String, required: true },
     startTime: { type: Date, required: true },
     image: { type: String, required: true },
-    endTime: { type: Date }
+    endTime: { type: Date, required: true }
 })
 
 const Promotion = mongoose.model('Promotion', PromotionSchema, 'Promotion');
