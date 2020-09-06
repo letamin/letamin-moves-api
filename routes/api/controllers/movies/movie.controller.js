@@ -150,7 +150,7 @@ const deleteMovieById = (req, res, next) => {
 
                 return Promise.all([
                     Movie.deleteOne({ _id: id }),
-                    MovieDate.deleteOne({ _id: id })
+                    MovieDate.deleteMany({ movieId: id })
                 ])
             })
             .then(() => res.status(204).json())
