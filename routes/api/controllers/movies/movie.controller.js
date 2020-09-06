@@ -114,33 +114,6 @@ const postMovie = (req, res, next) => {
 const patchMovieById = (req, res, next) => {
     const { id } = req.params;
 
-    var query = { _id: id }
-
-    MovieDate.find(query)
-        .then(
-            Movie.findById(id)
-                .then(movie => {
-                    if (!movie) {
-                        return Promise.reject({
-                            status: 404,
-                            message: "Movie not found."
-                        })
-                    }
-
-                    Object.keys(req.body).forEach(key => {
-                        movie[key] = req.body[key];
-                    })
-                    return movie.save();
-                })
-                .then(movie => res.status(200).json(movie))
-                .catch(err => res.json(err))
-        )
-}
-
-const deleteMovieById = (req, res, next) => {
-    const { id } = req.params;
-
-
     Movie.findById(id)
         .then(movie => {
             if (!movie) {
@@ -150,10 +123,37 @@ const deleteMovieById = (req, res, next) => {
                 })
             }
 
-            return Movie.deleteOne({ _id: id })
+            Object.keys(req.body).forEach(key => {
+                movie[key] = req.body[key];
+            })
+            return movie.save();
         })
-        .then(() => res.status(204).json())
+        .then(movie => res.status(200).json(movie))
         .catch(err => res.json(err))
+
+}
+
+const deleteMovieById = (req, res, next) => {
+    const { id } = req.params;
+
+    var query = { _id: id }
+
+    MovieDate.find(query).then(
+        Movie.findById(id)
+            .then(movie => {
+                if (!movie) {
+                    return Promise.reject({
+                        status: 404,
+                        message: "Movie not found."
+                    })
+                }
+
+                return Movie.deleteOne({ _id: id })
+            })
+            .then(() => res.status(204).json())
+            .catch(err => res.json(err))
+    )
+
 }
 
 module.exports = {
